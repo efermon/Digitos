@@ -90,14 +90,11 @@ function Reconocer() {
 }
 
 async function predecir(reader) {
-    console.log(reader);
     const response = await fetch('https://efermon-leedigito.hf.space/run/predict', {  
       method: "POST", body: JSON.stringify({ "data": [reader] }),
       headers: { "Content-Type": "application/json" }
     });
     const json = await response.json();
-
-    console.log(json);
 
     const label0 = json['data'][0]['confidences'][0]['label'];
     const prob0  = json['data'][0]['confidences'][0]['confidence'];
@@ -105,16 +102,16 @@ async function predecir(reader) {
     pred0.innerHTML = 'Predición:' + label0
     prec0.innerHTML = ' ' + rsu0 + '%'
 
-    const label1 = json['data'][1]['confidences'][1]['label'];
-    const prob1  = json['data'][1]['confidences'][1]['confidence'];
+    const label1 = json['data'][0]['confidences'][1]['label'];
+    const prob1  = json['data'][0]['confidences'][1]['confidence'];
     const rsu1   = Number(prob1.toFixed(2)) * 100;
-    pred0.innerHTML = 'Predición:' + label1
+    pred0.innerHTML = 'Opción:' + label1
     prec0.innerHTML = ' ' + rsu1 + '%'
 
-    const label2 = json['data'][2]['confidences'][2]['label'];
-    const prob2  = json['data'][2]['confidences'][2]['confidence'];
+    const label2 = json['data'][0]['confidences'][2]['label'];
+    const prob2  = json['data'][0]['confidences'][2]['confidence'];
     const rsu2   = Number(prob0.toFixed(2)) * 100;
-    pred2.innerHTML = 'Predición:' + label2
+    pred2.innerHTML = 'Opción:' + label2
     prec2.innerHTML = ' ' + rsu2 + '%'
 
 
