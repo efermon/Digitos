@@ -1,3 +1,5 @@
+import { client } from "@gradio/client";
+
 const COLOR = "black";
 const COLOR_FONDO = "white"
 const GROSOR = 6;
@@ -8,9 +10,6 @@ let ctx = null;
 
 
 function inicio(){
-    import { client } from "@gradio/client";
-	
-	
     const canva = document.getElementById("canva");
     ctx = canva.getContext("2d");
 
