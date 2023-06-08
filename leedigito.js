@@ -94,11 +94,12 @@ function Reconocer() {
 
 async function run(imgUrl) {
     console.log(imgUrl);
+    /*	
     import { client } from "@gradio/client";	
-    /*
+    
 	const response_0 = await fetch("https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png");
 	const exampleImage = await response_0.blob();
-    */
+    
 
 
     const img = await fetch(imgUrl);
@@ -110,9 +111,10 @@ async function run(imgUrl) {
 	]);
 
 	console.log(result?.data);
+	*/
 }
 
-run();
+
 
 
 window.addEventListener("load", inicio, false);
