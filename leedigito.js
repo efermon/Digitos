@@ -86,16 +86,20 @@ function mouse_out() {
 
 function Reconocer() {
     const digito = document.getElementById("imagen");
-	digito.src = canva.toDataURL("image/png");	
-    run(digito.src)
+    const imgurl = canva.toDataURL("image/png");	
+	digito.src = imgurl;
+    run(imgurl);
 }
 
 
 
 async function run(imgUrl) {
-
+    console.log(imgUrl);
+    /*
 	const response_0 = await fetch("https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png");
 	const exampleImage = await response_0.blob();
+    */
+
 
     const img = await fetch(imgUrl);
     const imgDat = await img.blob();
