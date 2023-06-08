@@ -87,33 +87,8 @@ function Reconocer() {
     const imgurl = canva.toDataURL("image/png");
     console.log('Url='+imgurl);
     digito.src = imgurl;
-    predecir(imgurl);
+    console.log(imgurl);
 }
-
-function predecir (imgUrl) {
-    console.log(imgUrl);
-    /*	
-    import { client } from "@gradio/client";	
-    
-	const response_0 = await fetch("https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png");
-	const exampleImage = await response_0.blob();
-    
-
-
-    const img = await fetch(imgUrl);
-    const imgDat = await img.blob();
-						
-	const app = await client("https://efermon-leedigito.hf.space/");
-	const result = await app.predict("/predict", [
-				imgDat, 	// blob in 'img' Image component
-	]);
-
-	console.log(result?.data);
-	*/
-}
-
-
-
 
 window.addEventListener("load", inicio, false);
 
