@@ -1,0 +1,37 @@
+
+#pcanva {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color: #1107a3;
+    margin-left:38px;
+}
+#canva {
+    border: 2px solid rgb(0, 0, 0);
+    margin-left:38px;
+}
+#imagen {
+    width: 215px;
+    height: 215px;
+    border: 2px solid black;
+}
+.btn {
+    border: 1px solid #143b01; 
+    padding: 15px; 
+    background-color:  #1f5e02; 
+    color: #f7f7fa; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 15px; 
+    cursor:pointer;
+    margin-left:38px;
+}
+.btn:hover {
+    background-color:  #9df176; 
+    color: #141414; 
+}
+#resultado {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color:  #143b01; 
+}
