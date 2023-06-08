@@ -1,3 +1,5 @@
+import { client } from "@gradio/client";
+
 const COLOR = "black";
 const COLOR_FONDO = "white"
 const GROSOR = 6;
@@ -85,7 +87,29 @@ function mouse_out() {
 function Reconocer() {
     const digito = document.getElementById("imagen");
 	digito.src = canva.toDataURL("image/png");	
+    run(digito.src)
 }
+
+
+
+async function run(imgUrl) {
+
+	const response_0 = await fetch("https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png");
+	const exampleImage = await response_0.blob();
+
+    const img = await fetch(imgUrl);
+    const imgDat = await img.blob();
+						
+	const app = await client("https://efermon-leedigito.hf.space/");
+	const result = await app.predict("/predict", [
+				imgDat, 	// blob in 'img' Image component
+	]);
+
+	console.log(result?.data);
+}
+
+run();
+
 
 window.addEventListener("load", inicio, false);
 
