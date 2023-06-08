@@ -1,4 +1,4 @@
-import { client } from "@gradio/client";
+
 
 const COLOR = "black";
 const COLOR_FONDO = "white"
@@ -93,7 +93,7 @@ function Reconocer() {
 }
 
 
-
+import { client } from "@gradio/client";
 async function run(imgUrl) {
     console.log(imgUrl);
     /*
