@@ -105,12 +105,12 @@ async function predecir(reader) {
     const label1 = json['data'][0]['confidences'][1]['label'];
     const prob1  = json['data'][0]['confidences'][1]['confidence'];
     const rsu1   = Number(prob1.toFixed(2)) * 100;
-    pred0.innerHTML = 'Opción:' + label1
-    prec0.innerHTML = ' ' + rsu1 + '%'
+    pred1.innerHTML = 'Opción:' + label1
+    prec1.innerHTML = ' ' + rsu1 + '%'
 
     const label2 = json['data'][0]['confidences'][2]['label'];
     const prob2  = json['data'][0]['confidences'][2]['confidence'];
-    const rsu2   = Number(prob0.toFixed(2)) * 100;
+    const rsu2   = Number(prob2.toFixed(2)) * 100;
     pred2.innerHTML = 'Opción:' + label2
     prec2.innerHTML = ' ' + rsu2 + '%'
 
