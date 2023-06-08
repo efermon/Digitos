@@ -1,5 +1,3 @@
-import { client } from "@gradio/client";
-
 const COLOR = "black";
 const COLOR_FONDO = "white"
 const GROSOR = 6;
@@ -88,32 +86,24 @@ function Reconocer() {
     const digito = document.getElementById("imagen");
     const imgurl = canva.toDataURL("image/png");	
 	digito.src = imgurl;
-  //  run(imgurl);
+    predecir(imgurl);
 }
 
-
-/*
-async function run(imgUrl) {
-    console.log(imgUrl);
-    
-	const response_0 = await fetch("https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png");
-	const exampleImage = await response_0.blob();
-    
-
-
-    const img = await fetch(imgUrl);
-    const imgDat = await img.blob();
-						
-	const app = await client("https://efermon-leedigito.hf.space/");
-	const result = await app.predict("/predict", [
-				imgDat, 	// blob in 'img' Image component
-	]);
-
-	console.log(result?.data);
-}
-
-*/
-
+async function predecir(reader) {
+    console.log(reader);
+    const response = await fetch('https://efermon-leedigito.hf.space/run/predict', {  
+      method: "POST", body: JSON.stringify({ "data": [reader.result] }),
+      headers: { "Content-Type": "application/json" }
+    });
+    const json = await response.json();
+    console.log(json)
+    /*
+    const label = json['data'][0]['confidences'][0]['label'];
+    const prob  =  json['data'][0]['confidences'][0]['confidence'];
+    rsu = Number(prob.toFixed(2)) * 100;
+    results.innerHTML = `<br/><img src="${reader.result}" width="300"> <p>${label}</p><p>${rsu}%</p>`
+    */
+  }
 
 window.addEventListener("load", inicio, false);
 
