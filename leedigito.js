@@ -90,9 +90,9 @@ function Reconocer() {
 }
 
 async function predecir(reader) {
-    console.log(reader.result);
+    console.log(reader);
     const response = await fetch('https://efermon-leedigito.hf.space/run/predict', {  
-      method: "POST", body: JSON.stringify({ "data": [reader.result] }),
+      method: "POST", body: JSON.stringify({ "data": [reader] }),
       headers: { "Content-Type": "application/json" }
     });
     const json = await response.json();
