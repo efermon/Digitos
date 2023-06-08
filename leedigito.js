@@ -99,6 +99,10 @@ async function predecir(reader) {
     const label0 = json['data'][0]['confidences'][0]['label'];
     const prob0  =  json['data'][0]['confidences'][0]['confidence'];
     const rsu0 = Number(prob0.toFixed(2)) * 100;
+
+    pred0.innerHTML = label0
+    prec0.innerHTML = rsu0
+
     console.log(label0 + ' ' + rsu0)
     /*
     results.innerHTML = `<br/><img src="${reader.result}" width="300"> <p>${label}</p><p>${rsu}%</p>`
