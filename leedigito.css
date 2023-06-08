@@ -32,6 +32,11 @@
 #resultado {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 15px;
     color:  #143b01; 
+}
+#resultado {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    color:  #4d4e04; 
 }

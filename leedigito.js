@@ -96,17 +96,26 @@ async function predecir(reader) {
       headers: { "Content-Type": "application/json" }
     });
     const json = await response.json();
+
     const label0 = json['data'][0]['confidences'][0]['label'];
-    const prob0  =  json['data'][0]['confidences'][0]['confidence'];
-    const rsu0 = Number(prob0.toFixed(2)) * 100;
+    const prob0  = json['data'][0]['confidences'][0]['confidence'];
+    const rsu0   = Number(prob0.toFixed(2)) * 100;
+    pred0.innerHTML = 'Predición:' + label0
+    prec0.innerHTML = ' ' + rsu0 + '%'
 
-    pred0.innerHTML = label0
-    prec0.innerHTML = rsu0
+    const label1 = json['data'][1]['confidences'][1]['label'];
+    const prob1  = json['data'][1]['confidences'][1]['confidence'];
+    const rsu1   = Number(prob1.toFixed(2)) * 100;
+    pred0.innerHTML = 'Predición:' + label1
+    prec0.innerHTML = ' ' + rsu1 + '%'
 
-    console.log(label0 + ' ' + rsu0)
-    /*
-    results.innerHTML = `<br/><img src="${reader.result}" width="300"> <p>${label}</p><p>${rsu}%</p>`
-    */
+    const label2 = json['data'][2]['confidences'][2]['label'];
+    const prob2  = json['data'][2]['confidences'][2]['confidence'];
+    const rsu2   = Number(prob0.toFixed(2)) * 100;
+    pred2.innerHTML = 'Predición:' + label2
+    prec2.innerHTML = ' ' + rsu2 + '%'
+
+
   }
 
 window.addEventListener("load", inicio, false);
