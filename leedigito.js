@@ -88,7 +88,7 @@ function Reconocer() {
     console.log('Url='+imgurl);
     digito.src = imgurl;
     run(imgurl);
-}
+
 
 
 
@@ -115,7 +115,7 @@ async function run(imgUrl) {
 }
 
 
-
+}
 
 window.addEventListener("load", inicio, false);
 
