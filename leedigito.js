@@ -86,8 +86,9 @@ function mouse_out() {
 
 function Reconocer() {
     const digito = document.getElementById("imagen");
-    const imgurl = canva.toDataURL("image/png");	
-	digito.src = imgurl;
+    const imgurl = canva.toDataURL("image/png");
+    console.log('Url='+imgurl);
+    digito.src = imgurl;
     run(imgurl);
 }
 
