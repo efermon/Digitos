@@ -87,12 +87,10 @@ function Reconocer() {
     const imgurl = canva.toDataURL("image/png");
     console.log('Url='+imgurl);
     digito.src = imgurl;
-    run(imgurl);
+    predecir(imgurl);
+}
 
-
-
-
-async function run(imgUrl) {
+function predecir (imgUrl) {
     console.log(imgUrl);
     /*	
     import { client } from "@gradio/client";	
@@ -115,7 +113,7 @@ async function run(imgUrl) {
 }
 
 
-}
+
 
 window.addEventListener("load", inicio, false);
 
