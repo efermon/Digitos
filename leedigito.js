@@ -97,6 +97,8 @@ async function predecir(reader) {
     });
     const json = await response.json();
 
+    console.log(json);
+
     const label0 = json['data'][0]['confidences'][0]['label'];
     const prob0  = json['data'][0]['confidences'][0]['confidence'];
     const rsu0   = Number(prob0.toFixed(2)) * 100;
