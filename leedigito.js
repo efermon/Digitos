@@ -96,11 +96,11 @@ async function predecir(reader) {
       headers: { "Content-Type": "application/json" }
     });
     const json = await response.json();
-    console.log(json)
+    const label0 = json['data'][0]['confidences'][0]['label'];
+    const prob0  =  json['data'][0]['confidences'][0]['confidence'];
+    const rsu0 = Number(prob0.toFixed(2)) * 100;
+    console.log(label0 + ' ' + rsu0)
     /*
-    const label = json['data'][0]['confidences'][0]['label'];
-    const prob  =  json['data'][0]['confidences'][0]['confidence'];
-    rsu = Number(prob.toFixed(2)) * 100;
     results.innerHTML = `<br/><img src="${reader.result}" width="300"> <p>${label}</p><p>${rsu}%</p>`
     */
   }
