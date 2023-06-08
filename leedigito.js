@@ -1,5 +1,3 @@
-
-
 const COLOR = "black";
 const COLOR_FONDO = "white"
 const GROSOR = 6;
