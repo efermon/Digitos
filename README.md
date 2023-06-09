@@ -8,6 +8,8 @@ and from chapter 4 of the book [Deep Learning for Coders with Fastai and PyTorch
 This is an example from a beginner with very little knowledge and lacking absolute precision, especially with numbers 0, 5 and 6.  
 It is published here as a help for other beginners, trying to save them some of the many hours I have spent doing it.
 
-## Cuaderno jupyter
+## Jupyter notebook LeeDigito_entrenar.ipynb
+Con este cuaderno entrenamos el modelo  partir de la biblioteca **MNIST**, consiguiendo una precisión del 99%. Exportamos el modelo pkl para usarlo después con HugginsFace spaces y gradio.
+>With this notebook we train the model from the **MNIST** library, achieving an accuracy of 99%. We export the pkl model for later use with HugginsFace spaces and gradio.
 
-a
+
