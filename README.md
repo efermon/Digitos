@@ -7,8 +7,10 @@ Con este cuaderno entrenamos el modelo  partir de la biblioteca **MNIST**, consi
 >With this notebook we train the model from the **MNIST** library, achieving an accuracy of 99%. We export the pkl model for later use with HugginsFace spaces and gradio.
 
 ## HugginFace spaces
-Pueden probar el modelo con [HugginFace](https://huggingface.co/spaces/efermon/leedigito). Para ello necesitamos la aplicación *app.py*, las imágenes ejemplos *dos.png*, *cinco.png* y *seis.png*. 
-Por último el fichero requirements.txt
+Pueden probar el modelo con [HugginFace](https://huggingface.co/spaces/efermon/leedigito). Para ello necesitamos la aplicación *app.py*, las imágenes ejemplos *dos.png*, *cinco.png* y *seis.png* y el 
+fichero requirements.txt
+>You can test the model with [HugginFace](https://huggingface.co/spaces/efermon/leedigito). For this we need the *app.py* application, the sample images *two.png*, *five.png* and *six.png* and the 
+requirements.txt file
 
 ## Github
 
