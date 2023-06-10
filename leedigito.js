@@ -1,6 +1,6 @@
 const COLOR = "black";
 const COLOR_FONDO = "white"
-const GROSOR = 6;
+const GROSOR = 8;
 
 let x0 = 0, y0 = 0, x1 = 0, y1 = 0;
 let swDibujo = false; 
