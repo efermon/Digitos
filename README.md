@@ -9,8 +9,9 @@ Con este cuaderno entrenamos el modelo  partir de la biblioteca **MNIST**, consi
 ## HugginFace spaces
 Pueden probar el modelo con [HugginFace](https://huggingface.co/spaces/efermon/leedigito). Para ello necesitamos la aplicación *app.py*, las imágenes ejemplos *dos.png*, *cinco.png* y *seis.png* y el 
 fichero requirements.txt
->You can test the model with [HugginFace](https://huggingface.co/spaces/efermon/leedigito). For this we need the *app.py* application, the sample images *two.png*, *five.png* and *six.png* and the 
+>You can test the model with [HugginFace](https://huggingface.co/spaces/efermon/leedigito). For this we need the *app.py* application, the sample images *dos.png*, *cinco.png* and *.png* and the 
 requirements.txt file
+
 
 ## Github
 
