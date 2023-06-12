@@ -20,7 +20,5 @@ Aquí se despliega una [página básica](https://efermon.github.io/digitos/) que
 >Here is a [basic page](https://efermon.github.io/digitos/) that allows you to draw a digit with the mouse and have it recognised by the model in HugginFace. A bit of html and css and some more javascript to manage the canvas and call HuggingFace.
 
 ```python
- #Invertir imagen
-    tns = np.invert(img) 
-    dgto = Image.fromarray(tns)
+ 
 ```
