@@ -8,12 +8,15 @@ Con este cuaderno entrenamos el modelo  partir de la biblioteca **MNIST**, consi
 
 ## HugginFace spaces
 Pueden probar el modelo con [HugginFace](https://huggingface.co/spaces/efermon/leedigito). Para ello necesitamos la aplicación *app.py*, las imágenes ejemplos *dos.png*, *cinco.png* y *seis.png* y el 
-fichero requirements.txt
+fichero requirements.txt. 
+
+En la aplicación *app.py*, en la función *clasificador*, antes de realizar la predición, invertimos la imagen, la pasamos a escala de grises y la reducimos a un tamaño de 28x28 pixels, que es como se entrenó el modelo.
 >You can test the model with [HugginFace](https://huggingface.co/spaces/efermon/leedigito). For this we need the *app.py* application, the sample images *dos.png*, *cinco.png* and *.png* and the 
-requirements.txt file
+requirements.txt file.
+In the *app.py* application, in the *clasificador* function, before making the prediction, we invert the image, convert it to greyscale and reduce it to a size of 28x28 pixels, which is how the model was trained.
+
 
 
 ## Github
-
 Aquí se despliega una [página básica](https://efermon.github.io/digitos/) que permite dibujar un dígito con el ratón y que sea reconocido por el modelo en HugginFace. Un poco de html y css y algo más de javascript para gestionar el canvas y llamar a HuggingFace.
 >Here is a [basic page](https://efermon.github.io/digitos/) that allows you to draw a digit with the mouse and have it recognised by the model in HugginFace. A bit of html and css and some more javascript to manage the canvas and call HuggingFace.
