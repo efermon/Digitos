@@ -72,7 +72,7 @@ simple_net = nn.Sequential(
 ```
 
 Entrenar el modelo (Training the model)
-Trato de entrenar el modelo utilizando la función de pérdida la precisión explicada en el capítulo 4:
+Trato de entrenar el modelo utilizando la función de pérdida y la precisión explicada en el capítulo 4:
 >I try to train the model using the loss function and accuracy explained in chapter 4:
 ```python
 learn = Learner(dls,simple_net,opt_func=SGD,loss_func=mnist_loss, metrics=batch_accuracy)
@@ -97,10 +97,89 @@ Ahora la precisión mejora hasta un 97%, pero el DataLoaders *dls* carece de alg
 ## Intento 2 (Attempt 2)
 Siguiendo las instrucciones de la página [Data block tutorial](https://docs.fast.ai/tutorial.datablock.html) preparo el DataLoaders a partir de un Datablock:
 >Following the instructions on the page [Data block tutorial](https://docs.fast.ai/tutorial.datablock.html) I prepare the DataLoader from a Datablock:
-
-
-
-
 ```python
- 
+from fastai.vision.all import *
+path = untar_data(URLs.MNIST)
+
+mnist = DataBlock(blocks=(ImageBlock(cls=PILImageBW), CategoryBlock), 
+        get_items=get_image_files,
+        splitter=GrandparentSplitter(train_name='training', valid_name='testing'),
+        get_y=parent_label)
+        
+dls = mnist.dataloaders(path)
+
+simple_net = nn.Sequential(
+    Flatten(),
+    nn.Linear(28*28,60),
+    nn.ReLU(),
+    nn.Linear(60,10)   
+)
+
+learn = Learner(dls,simple_net,opt_func=SGD,loss_func=nn.CrossEntropyLoss(),metrics=accuracy,)
+learn.fit(20, 0.1)
 ```
+La precisión sigue siendo del 97% y trato de realizar una predición sobre unas imágenes que ya tenía preparadas.
+>The accuracy is still 97% and I try to make a prediction on some images that I already had prepared.
+```python
+im3 = Image.open('/mnt/Gdatos/IA/fastai/Leccion3/dos.png')
+tns = tensor(im3)
+
+learn.predict(tns)
+```
+La predición continúa mostrando diversos errores (*RuntimeError: mat1 and mat2 shapes cannot be multiplied (1x184900 and 784x60), IndexError: list index out of range*) según voy intentando con diversos formatos de la imagén. Al final ajusto la imagen a predecir al mismo formato que tenían las imágenes de entrenamiento y validación:
+>The prediction keeps showing various errors (*RuntimeError: mat1 and mat2 shapes cannot be multiplied (1x184900 and 784x60), IndexError: list index out of range*) as I try various image formats. In the end, I adjust the image to be predicted to the same format as the training and validation images:
+```python
+im3 = Image.open('/mnt/Gdatos/IA/fastai/Leccion3/dos.png')
+
+# Invertir la imagen (Invert the image)
+tns = np.invert(im3)  
+im3 = Image.fromarray(tns)
+
+#Escala de grises (Greyscale)
+im3 = im3.convert('L')
+
+#Ajustar el tamaño(Adjust size)
+im3 = im3.resize((28,28))
+
+tns = tensor(im3)
+learn.predict(tns)
+```
+Ahora si que esperaba obtener algún resultado más o menos válido, pero lo que obtengo es una predición que no logro comprender:
+>Now I was expecting to get a more or less valid result, but what I get is a prediction that I can't understand:
+
+("['8', '2', '7', '3', '3', '8', '1', '9', '4', '3']",
+ TensorBase([-2.9075,  2.4657,  7.7539,  3.5027, -7.0306, -2.6940,  1.9670,
+             -1.0043,  4.5188, -7.1642]),
+ TensorBase([-2.9075,  2.4657,  7.7539,  3.5027, -7.0306, -2.6940,  1.9670,
+             -1.0043,  4.5188, -7.1642]))
+
+## Intento 3 (Attempt 3)
+Como no he conseguido obtener una predición medianamente válida, sigo el consejo del final del capítulo y pruebo con un modelo **resnet** de 18 capas:
+>Since I haven't been able to get a fairly valid prediction, I follow the advice at the end of the chapter and try an 18-layer **resnet** model:
+```python
+learn = vision_learner(dls, resnet18, metrics=accuracy)
+learn.fine_tune(3)
+
+im3 = Image.open('/mnt/Gdatos/IA/fastai/Leccion3/dos.png')
+
+# Invertir la imagen (Invert the image)
+tns = np.invert(im3)  
+im3 = Image.fromarray(tns)
+
+#Escala de grises (Greyscale)
+im3 = im3.convert('L')
+
+#Ajustar el tamaño(Adjust size)
+im3 = im3.resize((28,28))
+
+tns = tensor(im3)
+learn.predict(tns)
+```
+Y, por fin, aunque el entrenamiento consume bastante más tiempo, la precisión es del 99% y la predición es razonablemente buena. Es cierto que con algunos dígitos tengo que hacer varios intentos, especialmente con el 6, pero generalmente obtengo una predición razonable:
+>And finally, although the training takes a lot more time, the accuracy is 99% and the prediction is reasonably good. It is true that with some digits I have to do several attempts, especially with the 6, but usually I get a reasonable prediction:
+('2',
+ TensorBase(2),
+ TensorBase([1.7120e-04, 4.7535e-06, 9.9922e-01, 3.0358e-05, 2.7595e-05,
+             7.8195e-05, 1.1897e-05, 1.9868e-05, 1.3803e-04, 2.9686e-04]))
+
+
