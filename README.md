@@ -71,6 +71,33 @@ simple_net = nn.Sequential(
 )
 ```
 
+Entrenar el modelo (Training the model)
+Trato de entrenar el modelo utilizando la función de pérdida la precisión explicada en el capítulo 4:
+>I try to train the model using the loss function and accuracy explained in chapter 4:
+```python
+learn = Learner(dls,simple_net,opt_func=SGD,loss_func=mnist_loss, metrics=batch_accuracy)
+learn.fit(20, 0.1)
+```
+La precisión obtenida así era ridiculamente baja y quedaba claro que las funciones definidas no eran eficientes. Leí un poco sobre CrossEntropyLoss y ajusté el entrenamiento como sigue (tambíen tuve que ajustar la función *simple_net*):
+>The precision obtained in this way was ridiculously low and it was clear that the defined functions were not efficient. I read a bit about CrossEntropyLoss and adjusted the training as follows (I also had to adjust the *simple_net* function):
+
+```python
+simple_net = nn.Sequential(
+    nn.Linear(28*28,60),
+    nn.ReLU(),
+    nn.Linear(60,1),
+)
+
+learn = Learner(dls,simple_net,opt_func=SGD,loss_func=nn.CrossEntropyLoss(),metrics=accuracy,)
+learn.fit(20, 0.1)
+```
+Ahora la precisión mejora hasta un 97%, pero el DataLoaders *dls* carece de algunos atributos y se producen diversos errores si trato de realizar alguna predición o exportar el modelo (*'list' object has no attribute 'decode_batch',  'list' object has no attribute 'new_empty'*)
+>Now the accuracy improves up to 97%, but the DataLoaders *dls* is missing some attributes and various errors occur if I try to do any prediction or export the model (*'list' object has no attribute 'decode_batch', 'list' object has no attribute 'new_empty'*)
+
+## Intento 2 (Attempt 2)
+Siguiendo las instrucciones de la página [Data block tutorial](https://docs.fast.ai/tutorial.datablock.html) preparo el DataLoaders a partir de un Datablock:
+>Following the instructions on the page [Data block tutorial](https://docs.fast.ai/tutorial.datablock.html) I prepare the DataLoader from a Datablock:
+
 
 
 
