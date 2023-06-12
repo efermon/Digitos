@@ -148,8 +148,10 @@ Ahora si que esperaba obtener algún resultado más o menos válido, pero lo que
 >Now I was expecting to get a more or less valid result, but what I get is a prediction that I can't understand:
 
 ("['8', '2', '7', '3', '3', '8', '1', '9', '4', '3']",
+
  TensorBase([-2.9075,  2.4657,  7.7539,  3.5027, -7.0306, -2.6940,  1.9670,
              -1.0043,  4.5188, -7.1642]),
+             
  TensorBase([-2.9075,  2.4657,  7.7539,  3.5027, -7.0306, -2.6940,  1.9670,
              -1.0043,  4.5188, -7.1642]))
 
@@ -179,8 +181,11 @@ Y, por fin, aunque el entrenamiento consume bastante más tiempo, la precisión 
 >And finally, although the training takes a lot more time, the accuracy is 99% and the prediction is reasonably good. It is true that with some digits I have to do several attempts, especially with the 6, but usually I get a reasonable prediction:
 
 ('2',
+
  TensorBase(2),
+ 
  TensorBase([1.7120e-04, 4.7535e-06, 9.9922e-01, 3.0358e-05, 2.7595e-05,
              7.8195e-05, 1.1897e-05, 1.9868e-05, 1.3803e-04, 2.9686e-04]))
+            
 
 
