@@ -19,6 +19,61 @@ In the *app.py* application, in the *clasificador* function, before making the p
 Aquí se despliega una [página básica](https://efermon.github.io/digitos/) que permite dibujar un dígito con el ratón y que sea reconocido por el modelo en HugginFace. Un poco de html y css y algo más de javascript para gestionar el canvas y llamar a HuggingFace.
 >Here is a [basic page](https://efermon.github.io/digitos/) that allows you to draw a digit with the mouse and have it recognised by the model in HugginFace. A bit of html and css and some more javascript to manage the canvas and call HuggingFace.
 
+## Proceso de trabajo (Working process)
+
+### Intento 1 (Attempt 1)
+En el primer intento trato de seguir el código utilizado en el capítulo 4 para reconocer los dígitos 3 y 7
+>In the first attempt I try to follow the code used in chapter 4 to recognise the digits 3 and 7.
+```python
+from fastai.vision.all import *
+path = untar_data(URLs.MNIST)
+
+#Conjunto de entrenamiento (Training set):
+dig_img = get_image_files(path/'training').sorted()
+t_tns_x = torch.stack([tensor(Image.open(o)) for o in dig_img])
+t_tns_x = t_tns_x.float()/255
+t_tns_x = t_tns_x.view(-1, 28 * 28)
+t_tns_y = [int(o.parent.name) for o in dig_img]
+t_tns_y = tensor(t_tns_y)
+
+#Conjunto de validación (Validacion set):
+dig_img = get_image_files(path/'testing').sorted()
+v_tns_x = torch.stack([tensor(Image.open(o)) for o in dig_img])
+v_tns_x = v_tns_x.float()/255
+v_tns_x = v_tns_x.view(-1, 28 * 28)
+v_tns_y = [int(o.parent.name) for o in dig_img]
+v_tns_y = tensor(v_tns_y)
+
+#DataSet y DataLoaders
+t_dset = list(zip(t_tns_x,t_tns_y))
+v_dset = list(zip(v_tns_x,v_tns_y))
+
+t_dl = DataLoader(t_dset, batch_size=64,shuffle=True)
+v_dl = DataLoader(v_dset, batch_size=64,shuffle=True)
+
+dls = DataLoaders(t_dl, v_dl)
+
+
+# Funciones
+def mnist_loss(predictions, targets):
+    predictions = predictions.sigmoid()
+    return torch.where(targets==1, 1-predictions, predictions).mean()
+  
+def batch_accuracy(xb, yb):
+    pred = xb.sigmoid()
+    correct = (pred>0.5) == yb
+    return correct.float().mean()
+
+simple_net = nn.Sequential(
+    nn.Linear(28*28,60),
+    nn.ReLU(),
+    nn.Linear(60,1),
+)
+```
+
+
+
+
 ```python
  
 ```
