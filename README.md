@@ -72,6 +72,7 @@ simple_net = nn.Sequential(
 ```
 
 Entrenar el modelo (Training the model)
+
 Trato de entrenar el modelo utilizando la función de pérdida y la precisión explicada en el capítulo 4:
 >I try to train the model using the loss function and accuracy explained in chapter 4:
 ```python
